@@ -48,7 +48,7 @@ bool FBatteryTests::RunTest(const FString &Parameters) {
   BatteryTestFunc(3333.0f, FColor::Green, "100%");
   BatteryTestFunc(-3333.0f, FColor::Red, "0%");
 
-  AddInfo("Battery charge / uncharge");
+  AddInfo("Battery charge / discharge");
   Battery BatteryObject;
   for (int i = 0; i < 100; ++i) {
     BatteryObject.UnCharge();
