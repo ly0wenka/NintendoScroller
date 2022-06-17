@@ -6,6 +6,8 @@
 #include "GameFramework/Pawn.h"
 #include "MyPawn.generated.h"
 
+class UInputComponent;
+
 UCLASS()
 class NINTENDOSCROLLER_API AMyPawn : public APawn {
   GENERATED_BODY()
@@ -23,6 +25,5 @@ public:
   virtual void Tick(float DeltaTime) override;
 
   // Called to bind functionality to input
-  virtual void SetupPlayerInputComponent(
-      class UInputComponent *PlayerInputComponent) override;
+  virtual void SetupPlayerInputComponent(UInputComponent *PlayerInputComponent) override;
 };

@@ -1,0 +1,23 @@
+void AWarior::SetupPlayerInputComponent(UInputComponent* Input)
+{
+  Super::SetupPlayerController(Input);
+  AbilitySystemComponent->BindToInputComponent(Input);
+  for(const FGameplayAbilityBindInfo& BindInfo : GameplayAbilitySet->Abilities)
+  {
+    if(!BindInfo->GAClass)
+    {
+      Error(FS("GAClass Not set %d", (Int32) BindInfo->Command));
+      continue;
+    }
+    FGASpec Spec(BindInfo.UGAClass->GetDefaultObject<UGA>, 1 ,(Int32)BindInfo->Command);
+    FGASpecHandle Handle = AbilitySystemComponent->GiveAbility(Spec);
+    auto ID = (Int32) BindInfo->Command;
+    FGAInputBinds InputBinds(
+      FS("Confirm_Targeting_%s_%s", *GetName(), *BindInfo.UGAClass->GetName()),
+      FS("Cancel_Targeting_%s_%s", *GetName(), *BindInfo.UGAClass->GetName()),
+      "EGAInputBinds", AbilityID, AbilityID);
+      AbilitySystemComponent->AbilitySystemComponent->AbilityActivationToInputComponents(Input, InputBinds);
+      AbilitySystemComponent->TryActivateAbility(AbilityHandle, 1);
+      
+  }
+}

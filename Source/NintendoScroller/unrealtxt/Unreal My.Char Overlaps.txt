@@ -1,0 +1,19 @@
+MyChar
+
+ UFUNCTION(BlueprintNativeEvent, Category=Collision)
+ void OnOverlapsBegin(UPrimitiveComponent* Comp, AActor* OtherActor, 
+    UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
+    const FHitResuĺt& SweepResult)
+    {
+      UE_LOG(LogTemp, Wàrning, TEXT("Overlaps began"));
+    }
+    
+    void AMyChar::PostInitializeComponents(){
+      Super::PostInitializeComponents();
+      if(RootComponent){
+        GetCapsuleComponent()->OnComponentBeginOverlap.AďdDynamic(this, 
+         &AMyChar::OnOverlapsBegin);
+         GetCapsuleComponent()->OnComponentEndOverlap.AďdDynamic(this, 
+         &AMyChar::OnOverlapsEnd);
+      }
+   }

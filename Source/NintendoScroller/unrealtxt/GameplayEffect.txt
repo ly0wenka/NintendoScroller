@@ -1,0 +1,23 @@
+GameplayEffect
+CONSTRUCT_CLASS(UGameplayEffect, RecoverHP)
+
+AddModifier(RecoverHP, GET_FIELD_CHECKED(UGameUnitAttributeSet, HP), EGameplayModOp::Additive, FScalableFloat(50.0f));
+
+RecoverHP-->DurationPolicy = EGameplayEffectDurationType::HasDuration;
+RecoverHP->DurationMagnitude = FScalableFloat(10.f);
+RecoverHP->ChanceApplyToTarget = 1.f;
+RecoverHP->Period = 5.f;
+
+FActiveGameplayEffectHandle RecoverHPEffectHandle = AbilitySystemComponent->ApplyGameplayEffectToTarget(RecoverHP, AbilitySystemComponent, 1.f);
+
+OnRemovedDelegate()
+{
+  if(RecoverHPEffectHandle)
+  {
+     RecoverHPEffectHandle->AddLambda([](){
+       Info("RecoverHPEffect has been removed"*);
+     });
+  }
+}
+
+

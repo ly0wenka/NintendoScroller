@@ -1,0 +1,5 @@
+[ ] Ability Tags
+[ ] Cancel ability with tag
+[ ] Block
+[ ] Activation owned tags
+[ ] Activation Required Tags

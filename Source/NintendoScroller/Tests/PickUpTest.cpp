@@ -6,5 +6,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(PickUpTest, "Tests.MushRoom",
 bool PickUpTest::RunTest(const FString& Parameters)
 {
 	// Make the test pass by returning true, or fail by returning false.
+	// Move Character to point
+	// Check score
 	return true;
 }

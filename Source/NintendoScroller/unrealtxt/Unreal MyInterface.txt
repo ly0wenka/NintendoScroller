@@ -1,0 +1,142 @@
+#include "MyInterface.generated.h"
+
+UINTERFACE()
+class UMyInterface: public UInterface
+{
+  GENERATED_BODY()
+  public:
+    virtual FStringGetTestName();
+ }
+ 
+ class IMyInterface{
+   GENERATED_BODY()
+   FString GetTestName();
+ }
+ 
+ //cpp
+ FString IMyInterface::GetTestName(){
+   unimplemented();
+   return FString();
+ }
+ 
+ class ASingleInterfaceActor : public AActor, public IMyInterface{
+   GENERATED_BODY()
+    FString GetTestName() override;
+ }
+ 
+ //cpp
+ FString ASingleInterfaceActor::GetTestName(){ 
+   return IMyInterface::GetTestName();
+ }
+
+UCLASS()
+class  UMyGameMode : public UGameMode{
+  GENERATED_BODY()
+ public:
+   UPROPERTY()
+   TArray<IMyInterface*> MyInterfaceInstances;
+}
+ //MyGameMode.cpp
+ #include "MyInterface.h"
+ #include "SingleInterfaceActor.h"
+ 
+ UMyGameMode::BeginPlay(){
+   FTransformSpawnLocation;
+   ASingleInterfaceActor*  SingleInterfaceActor = GetWorld()->
+     SpawnActor<ASingleInterfaceActor>(ASingleInterfaceActor::StaticClass(), SpawnLocation);
+   if(  SingleInterfaceActor->GetClass()->ImplementsInterface(UMyInterface::StaticClass())){
+     GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red,
+     TEXT("Spawned actor implements interface!"));
+   }
+   
+   for(TActorIterator<AActor> It(GetWorld(), AActor::StaticClass()), It, ++It){
+     AActor* Actor = *It;
+     IMyInterface* MyInterfaceInstance = Cast<IMyInterface>(Actor);
+     if(MyInterfaceInstance)
+       MyInterfaceInstances.Add(MyInterfaceInstance);
+   }
+   GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red, FString::Printf(
+     TEXT("%d actors implement interface!"), MyInterfaceInstances.Num()));
+ }
+ 
+ class IGravityObject{
+   virtual void DisableGravity();
+   virtual void EnableGravity();
+ }
+ 
+ ///cpp
+ void IGravityObject::DisableGravity(){
+   AActor* Actor = Cast<AActor>(this);
+   if(Actor){
+     TArray<UPrimitiveComponent*> PrimitiveComponents;
+     Actor->GetComponents(PrimitiveComponents);
+     for(àuto* Comp : PrimitiveComponents)
+       Comp->SetEnableGravity(false);  //Todo: Enable \ true
+     
+   }
+ }
+ 
+ UCLASS()
+ class AAntiGravityVolume : public AActor{
+   GENERATED_BODY()
+   public:
+   UPROPERTY()
+   UBoxComponent* CollisionComponent;
+   
+   virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
+   virtual void NotifyActorEndOverlap(AActor* OtherActor) override;
+ }
+ 
+ //
+ AAntiGravityVolume::AAntiGravityVolume()
+ {
+   PrimaryActorrTick.bCanEverTick = true;
+   CollisionComponent = CreateDefaultObject<UBoxComponent>("CollisionComponent");
+   CollisionComponent->SetBoxExtent(FVector(200,200,400));
+   RootComponent = CollisionComponent;
+ }
+ 
+ void AAntiGravityVolume::NotifyActorBeginOverlap(AActor* OtherActor){
+   IGravityObject* GravityObject = Cast<IGravityObject>(OtherActor);
+   if(GravityObject){
+     GravityObject->DisableGravity(); //ToDo: End / EnableGravity()
+   }
+ }
+ 
+ UCLASS()
+ class APhysicsCube : public AActor, public IGravityObject
+ {
+   GENERATED_BODY()
+   public:
+     UPROPERTY()
+     UStaricMeshComponent* MyMesh;
+ }
+ //cpp
+ APhysicsCube::APhysicsCube(){
+   MyMesh= CreateDefaultSubobject<UStaricMeshComponent>("MyMesh");
+   auto MeshAsset = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT(
+   '"StaticMesh'/Engine/BasicShapes/Cube.Cube' "));
+   if(MeshAsset.Object)
+     MyMesh->SetStaticMesh(MeshAsset.Object);
+   MyMesh->SetMobility(EComponentMobility::Movable);
+   MyMeshh->SetSimulatePhysics(truee);
+   SetActorrEnableCollisiion(true);
+     
+ }
+ 
+ #include "Killable.generated.h
+ 
+ UINTERFACE(meta=(CannotImplementInterfaceInBlueprint))
+ class UKillable: public UInterface{
+  GENERATED_BODY()
+  UFUNCTION(BlueprintCallable, Category=Killable)
+  virtual bool IsDead();
+  UFUNCTION(BlueprintCallable, Category=Killable)
+  virtual void Die();
+ }
+ 
+ class IKillable{
+   GENERATED_BODY()
+ }
+ 
+ 

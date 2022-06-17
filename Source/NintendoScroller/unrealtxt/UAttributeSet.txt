@@ -1,0 +1,23 @@
+UAttributeSet
+#include "Runtime/GameplayAbilities/Public/AttributeSet.h"
+#include "GameUnitAttributeSet.generated.h"
+
+UCLASS(Blueprintable, BlueprintType)
+class UGameUnitAttributeSet : public UAttributeSet
+{
+  GENERATED_BODY()
+public:
+  UGameUnitAttributeSet(const FObjectInitializer& PCIP);
+  UPROPERTY(EditEnywhere, BlueprintReadWrite, Category = GAAbils)
+  float HP;
+  UPROPERTY(EditEnywhere, BlueprintReadWrite, Category = GAAbils)
+  float Mana;
+  UPROPERTY(EditEnywhere, BlueprintReadWrite, Category = GAAbils)
+  float Speed;
+};
+
+void AMyActor::PostInitializerComponents()
+{
+  AbilitySystemComponent->InitStats(UGameUnitAttributeSet::StaticClass(), NULL);
+}
+}
