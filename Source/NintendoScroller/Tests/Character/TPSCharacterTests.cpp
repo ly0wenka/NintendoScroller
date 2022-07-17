@@ -1,4 +1,7 @@
 ﻿#include "Misc/AutomationTest.h"
+#include "Tests/Utils/WorldHelper.h"
+#include "Tests/Utils/BlueprintHelper/BlueprintHelper.h"
+#include "Tests/Utils/LevelScope/LevelScope.h"
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(
     TPSCharacterTests, "Tests.Character.TPSCharacterTests", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
@@ -12,7 +15,6 @@ bool TPSCharacterTests::RunTest(const FString& Parameters)
 
 //#include "TPS/Tests/TPSCharacterTests.h"
 #include "CoreMinimal.h"
-#include "HealthData.h"
 #include "Misc/AutomationTest.h"
 #include "Tests/Utils/TestUtils.h"
 #include "Engine/World.h"
@@ -53,7 +55,7 @@ bool FHealthMightBeChangedWithDamage::RunTest(const FString& Parameters)
 {
     LevelScope("/Game/Tests/EmptyTestLevel");
 
-    UWorld* World = GetTestGameWorld();
+    UWorld* World = WorldHelper::GetWorld()();
     if (!TestNotNull("World exists", World)) return false;
 
     const FTransform InitialTransform{FVector{0.0f, -240.0f, 110.0f}};
@@ -128,11 +130,11 @@ bool FCharacterCanBeKilled::RunTest(const FString& Parameters)
 {
     const auto Level = LevelScope("/Game/Tests/EmptyTestLevel");
 
-    UWorld* World = GetTestGameWorld();
+    UWorld* World = WorldHelper::GetWorld();
     if (!TestNotNull("World exists", World)) return false;
 
     const FTransform InitialTransform{FVector{0.0f, -240.0f, 110.0f}};
-    ANSCharacter* Character = CreateBlueprintDeferred<ATPSCharacter>(World, CharacterTestBPName, InitialTransform);
+    ANSCharacter* Character = CreateBlueprintDeferred<ANSCharacter>(World, CharacterTestBPName, InitialTransform);
     if (!TestNotNull("Character exists", Character)) return false;
 
     FHealthData HealthData;
@@ -192,13 +194,13 @@ bool FAutoHealCheckLatentCommand::Update()
 
 bool FAutoHealShouldRestoreHealth::RunTest(const FString& Parameters)
 {
-    const auto Level = LevelScope("/Game/Tests/EmptyTestLevel");
+    const auto Level = LevelScope("/Game/SideScrollerBP/Maps/Level_1-1");
 
-    UWorld* World = GetTestGameWorld();
+    UWorld* World = WorldHelper::GetWorld()();
     if (!TestNotNull("World exists", World)) return false;
 
     const FTransform InitialTransform{FVector{0.0f, -240.0f, 110.0f}};
-    ANSCharacter* Character = CreateBlueprintDeferred<ANSCharacter>(World, CharacterTestBPName, InitialTransform);
+    ANSCharacter* Character = BlueprintHelper::CreateBlueprintDeferred<ANSCharacter>(World, CharacterTestBPName, InitialTransform);
     if (!TestNotNull("Character exists", Character)) return false;
 
     FHealthData HealthData;

@@ -7,14 +7,14 @@
 #include "SettingOptionWidget.generated.h"
 
 class UTextBlock;
-class UTPSGameSetting;
+class UNSGameSettings;
 class UButton;
 
 /**
  *
  */
 UCLASS()
-class TPS_API USettingOptionWidget : public UUserWidget
+class USettingOptionWidget : public UUserWidget
 {
     GENERATED_BODY()
 
@@ -34,9 +34,9 @@ protected:
     virtual void NativeOnInitialized() override;
 
 private:
-    TWeakObjectPtr<UTPSGameSetting> Setting;
+    TWeakObjectPtr<UNSGameSettings> Setting;
 
-    void Init(UTPSGameSetting* Setting);
+    void Init(UNSGameSettings* Setting);
     void UpdateTexts();
 
     UFUNCTION()

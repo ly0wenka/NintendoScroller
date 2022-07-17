@@ -1,5 +1,6 @@
 ﻿#include "GenericPlatform/GenericPlatformCrashContext.h"
 #include "Misc/AutomationTest.h"
+#include "Misc/FileHelper.h"
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(AlgorithmReadHeximalFilesTest, "Algorithm.Read Heximal Files Test",
     EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
@@ -17,9 +18,6 @@ bool AlgorithmReadHeximalFilesTest::RunTest(const FString& Parameters)
         return false;
     }
 
-    const FString Readed = FileContentString;
-    UE_LOG(LogReadFile, Display, *Readed)
-
-    TestEqual("", Readed[0], TEXT("xØ©^P<8d>^@ ¢ÿ<9a>­^B ^Pû­^B ^Pû þ¢^E½×^GÉ")[0]);
+    TestEqual("", FileContentString[0], TEXT("xØ©^P<8d>^@ ¢ÿ<9a>­^B ^Pû­^B ^Pû þ¢^E½×^GÉ")[0]);
     return true;
 }

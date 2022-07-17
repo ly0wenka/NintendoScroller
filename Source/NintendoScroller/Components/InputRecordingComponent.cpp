@@ -2,6 +2,7 @@
 
 #include "Components/InputRecordingComponent.h"
 #include "Engine/World.h"
+#include "GameFramework/PlayerController.h"
 #include "Components/InputComponent.h"
 #include "Tests/Utils/JsonUtils.h"
 #include "GameFramework/PlayerInput.h"

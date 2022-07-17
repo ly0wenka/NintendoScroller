@@ -1,9 +1,9 @@
 // My game copyright
 
 #include "UI/PauseMenu/VideoSettingsWidget.h"
-#include "Settings/TPSGameUserSettings.h"
 #include "Components/VerticalBox.h"
 #include "Components/Button.h"
+#include "Settings/NSGameUserSettings.h"
 #include "UI/PauseMenu/SettingOptionWidget.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogVideoSettingsWidget, All, All);
@@ -12,7 +12,7 @@ void UVideoSettingsWidget::NativeOnInitialized()
 {
     Super::NativeOnInitialized();
 
-    auto* UserSettings = UTPSGameUserSettings::Get();
+    auto* UserSettings = UNSGameUserSettings::Get();
     if (!UserSettings)
     {
         UE_LOG(LogVideoSettingsWidget, Error, TEXT("TPSGameUserSettings is nullptr"));
@@ -41,7 +41,7 @@ void UVideoSettingsWidget::NativeOnInitialized()
 
 void UVideoSettingsWidget::OnBenchmark()
 {
-    if (auto* UserSettings = UTPSGameUserSettings::Get())
+    if (auto* UserSettings = UNSGameUserSettings::Get())
     {
         UserSettings->RunBenchmark();
     }

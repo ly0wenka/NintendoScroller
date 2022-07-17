@@ -2,6 +2,7 @@
 
 #include "BatteryTests.h"
 
+#include "Misc/AutomationTest.h"
 #include "TPS/Battery.h"
 
 using namespace TPS;

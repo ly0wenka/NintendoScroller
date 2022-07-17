@@ -18,6 +18,11 @@
 //////////////////////////////////////////////////////////////////////////
 // ANSCharacter
 
+UAbilitySystemComponent* ANSCharacter::GetAbilitySystemComponent() const
+{
+    return nullptr;
+}
+
 ANSCharacter::ANSCharacter()
 {
     // Set size for collision capsule
@@ -85,19 +90,6 @@ void ANSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
     PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ANSCharacter::OnResetVR);
 }
 
-void ANSCharacter::OnResetVR()
-{
-// If TPS is added to a project via 'Add Feature' in the Unreal Editor the dependency on HeadMountedDisplay in TPS.Build.cs is not
-// automatically propagated and a linker error will result. You will need to either:
-//		Add "HeadMountedDisplay" to [YourProject].Build.cs PublicDependencyModuleNames in order to build successfully (appropriate if
-// supporting VR).
-// or:
-//		Comment or delete the call to ResetOrientationAndPosition below (appropriate if not supporting VR)
-#if MY_VR_MACRO
-    UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition();
-#endif
-}
-
 void ANSCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
 {
     Jump();
@@ -156,7 +148,7 @@ void ANSCharacter::BeginPlay()
     check(HealthData.MaxHealth > 0.0f);
     Health = HealthData.MaxHealth;
 
-    OnTakeAnyDamage.AddDynamic(this, &ANSCharacter::OnAnyDamageRecieved);
+    OnTakeAnyDamage.AddDynamic(this, &ANSCharacter::OnAnyDamageReceived);
 }
 
 float ANSCharacter::GetHealthPercent() const
@@ -164,7 +156,7 @@ float ANSCharacter::GetHealthPercent() const
     return Health / HealthData.MaxHealth;
 }
 
-void ANSCharacter::OnAnyDamageRecieved(
+void ANSCharacter::OnAnyDamageReceived(
     AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
     const auto IsAlive = [&]() { return Health > 0.0f; };
@@ -211,37 +203,4 @@ void ANSCharacter::OnDeath()
     }
 
     SetLifeSpan(HealthData.LifeSpan);
-}
-
-void ANSCharacter::TestClangFormat(AActor* Actor)
-{
-    for (int32 i = 0; i < 10; ++i)
-    {
-    }
-
-    int32 value = 2;  // trail comment
-
-    if (true)
-    {
-    }
-
-    switch (value)
-    {
-        case 1: value++; break;
-        case 2:
-        {
-        }
-        break;
-
-        default: break;
-    }
-
-    const TArray<int32> A = {10, 20, 30, 40};
-    const int32 Sum1 = A[0] + A[1] + A[2] + A[3];
-
-    // clang-format off
-    const int32 Sum2 = A[0] + A[1] +
-                       A[2] + A[3];
-    AActor    *pointer{  nullptr};
-    // clang-format on
 }

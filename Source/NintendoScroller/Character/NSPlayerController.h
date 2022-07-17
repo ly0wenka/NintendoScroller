@@ -12,7 +12,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnGamePauseDelegate, bool, IsPaused
  *
  */
 UCLASS()
-class TPS_API ANSPlayerController : public APlayerController
+class ANSPlayerController : public APlayerController
 {
     GENERATED_BODY()
 

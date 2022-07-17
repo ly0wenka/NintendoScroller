@@ -2,11 +2,11 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "TPS/TPSTypes.h"
+#include "Tests/Inventory/InventoryData.h"
 #include "NSInventoryComponent.generated.h"
 
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
-class TPS_API UNSInventoryComponent : public UActorComponent
+class UNSInventoryComponent : public UActorComponent
 {
     GENERATED_BODY()
 

@@ -23,7 +23,7 @@ UNSGameUserSettings::UNSGameUserSettings()
         };
 
     {
-        auto* Setting = NewObject<UNSGameSetting>();
+        auto* Setting = NewObject<UNSGameSettings>();
         check(Setting);
         Setting->SetName(LOCTEXT("AntiAliasing_Loc", "Anti-Aliasing"));
         Setting->SetOptions(VFXOptions);
@@ -33,7 +33,7 @@ UNSGameUserSettings::UNSGameUserSettings()
     }
 
     {
-        auto* Setting = NewObject<UNSGameSetting>();
+        auto* Setting = NewObject<UNSGameSettings>();
         check(Setting);
         Setting->SetName(LOCTEXT("Textures_Loc", "Textures"));
         Setting->SetOptions(VFXOptions);
@@ -43,7 +43,7 @@ UNSGameUserSettings::UNSGameUserSettings()
     }
 
     {
-        auto* Setting = NewObject<UNSGameSetting>();
+        auto* Setting = NewObject<UNSGameSettings>();
         check(Setting);
         Setting->SetName(LOCTEXT("GlobalIllumination_Loc", "Global Illumination"));
         Setting->SetOptions(VFXOptions);
@@ -53,7 +53,7 @@ UNSGameUserSettings::UNSGameUserSettings()
     }
 
     {
-        auto* Setting = NewObject<UNSGameSetting>();
+        auto* Setting = NewObject<UNSGameSettings>();
         check(Setting);
         Setting->SetName(LOCTEXT("Shadows_Loc", "Shadows"));
         Setting->SetOptions(VFXOptions);
@@ -63,7 +63,7 @@ UNSGameUserSettings::UNSGameUserSettings()
     }
 
     {
-        auto* Setting = NewObject<UNSGameSetting>();
+        auto* Setting = NewObject<UNSGameSettings>();
         check(Setting);
         Setting->SetName(LOCTEXT("PostProcessing_Loc", "Post Processing"));
         Setting->SetOptions(VFXOptions);
@@ -73,7 +73,7 @@ UNSGameUserSettings::UNSGameUserSettings()
     }
 
     {
-        auto* Setting = NewObject<UNSGameSetting>();
+        auto* Setting = NewObject<UNSGameSettings>();
         check(Setting);
         Setting->SetName(LOCTEXT("Reflections_Loc", "Reflections"));
         Setting->SetOptions(VFXOptions);
@@ -83,7 +83,7 @@ UNSGameUserSettings::UNSGameUserSettings()
     }
 
     {
-        auto* Setting = NewObject<UNSGameSetting>();
+        auto* Setting = NewObject<UNSGameSettings>();
         check(Setting);
         Setting->SetName(LOCTEXT("Effects_Loc", "Effects"));
         Setting->SetOptions(VFXOptions);
@@ -98,7 +98,7 @@ UNSGameUserSettings* UNSGameUserSettings::Get()
     return GEngine ? Cast<UNSGameUserSettings>(GEngine->GetGameUserSettings()) : nullptr;
 }
 
-const TArray<UNSGameSetting*>& UNSGameUserSettings::GetVideoSettings() const
+const TArray<UNSGameSettings*>& UNSGameUserSettings::GetVideoSettings() const
 {
     return VideoSettings;
 }

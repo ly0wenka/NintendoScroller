@@ -2,7 +2,6 @@
 
 #include "UI/PauseMenu/PauseMenuWidget.h"
 #include "Components/Button.h"
-#include "TPSPlayerController.h"
 
 void UPauseMenuWidget::NativeOnInitialized()
 {
@@ -16,7 +15,7 @@ void UPauseMenuWidget::OnCloseMenu()
 {
     if (!GetWorld()) return;
 
-    if (auto* PC = Cast<ATPSPlayerController>(GetWorld()->GetFirstPlayerController()))
+    if (auto* PC = Cast<ANSPlayerController>(GetWorld()->GetFirstPlayerController()))
     {
         PC->ToggleGamePause();
     }

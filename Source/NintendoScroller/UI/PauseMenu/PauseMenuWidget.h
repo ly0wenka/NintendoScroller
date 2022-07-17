@@ -12,7 +12,7 @@ class UButton;
  *
  */
 UCLASS()
-class TPS_API UPauseMenuWidget : public UUserWidget
+class UPauseMenuWidget : public UUserWidget
 {
     GENERATED_BODY()
 

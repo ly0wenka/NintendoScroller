@@ -16,7 +16,7 @@ public:
     void SetOptions(const TArray<FNSSettingOption>& Options);
 
     FNSSettingOption GetCurrentOption() const;
-    FText GetName() const;
+    FText GetSettingName() const;
     void AddGetter(TFunction<int32()> Func);
     void AddSetter(TFunction<void(int32)> Func);
 

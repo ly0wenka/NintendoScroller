@@ -1,9 +1,9 @@
 // My game copyright
 
 #include "UI/PauseMenu/SettingOptionWidget.h"
-#include "Settings/TPSGameSetting.h"
 #include "Components/TextBlock.h"
 #include "Components/Button.h"
+#include "Settings/NSGameSettings.h"
 
 void USettingOptionWidget::NativeOnInitialized()
 {
@@ -18,7 +18,7 @@ void USettingOptionWidget::NativeOnInitialized()
     PrevSettingButton->OnClicked.AddDynamic(this, &ThisClass::OnPrevSetting);
 }
 
-void USettingOptionWidget::Init(UTPSGameSetting* InSetting)
+void USettingOptionWidget::Init(UNSGameSettings* InSetting)
 {
     Setting = MakeWeakObjectPtr(InSetting);
     check(Setting.IsValid());

@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Engine/Blueprint.h"
-#include "Tests/AutomationCommon.h"
 
 namespace TPS
 {
@@ -47,13 +46,6 @@ T* CreateBlueprintDeferred(UWorld* World, const FString& Name, const FTransform&
     const UBlueprint* Blueprint = LoadObject<UBlueprint>(nullptr, *Name);
     return (World && Blueprint) ? World->SpawnActorDeferred<T>(Blueprint->GeneratedClass, Transform) : nullptr;
 }
-
-class LevelScope
-{
-public:
-    LevelScope(const FString& MapName) { AutomationOpenMap(MapName); }
-    ~LevelScope() { ADD_LATENT_AUTOMATION_COMMAND(FExitGameCommand); }
-};
 
 UWorld* GetTestGameWorld();
 

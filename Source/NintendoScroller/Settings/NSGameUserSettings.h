@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "NSGameSettings.h"
 #include "GameFramework/GameUserSettings.h"
 #include "NSGameUserSettings.generated.h"
 
@@ -12,7 +13,7 @@ DECLARE_MULTICAST_DELEGATE(FOnSettingsUpdatedDelegate);
  *
  */
 UCLASS()
-class TPS_API UNSGameUserSettings : public UGameUserSettings
+class UNSGameUserSettings : public UGameUserSettings
 {
     GENERATED_BODY()
 
@@ -20,7 +21,7 @@ public:
     UNSGameUserSettings();
     static UNSGameUserSettings* Get();
 
-    const TArray<class UNSGameSetting*>& GetVideoSettings() const;
+    const TArray<UNSGameSettings*>& GetVideoSettings() const;
 
     void RunBenchmark();
 
@@ -28,6 +29,6 @@ public:
 
 private:
     UPROPERTY()
-    TArray<class UNSGameSetting*> VideoSettings;
+    TArray<UNSGameSettings*> VideoSettings;
 };
  

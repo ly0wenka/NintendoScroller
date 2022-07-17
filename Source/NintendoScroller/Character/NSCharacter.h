@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
 #include "Components/GameplayAbilitySystem/GASAttributes.h"
+#include "Types/HealthData.h"
 #include "NSCharacter.generated.h"
 
 class UGASComponent;
@@ -20,6 +21,9 @@ class UInputComponent;
 UCLASS(config = Game)
 class ANSCharacter : public ACharacter, public IAbilitySystemInterface
 {
+public:
+    virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+private:
     GENERATED_BODY()
 
     /** Camera boom positioning the camera behind the character */

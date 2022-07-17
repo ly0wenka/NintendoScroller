@@ -14,7 +14,7 @@ class UButton;
  *
  */
 UCLASS()
-class TPS_API UVideoSettingsWidget : public UUserWidget
+class UVideoSettingsWidget : public UUserWidget
 {
     GENERATED_BODY()
 

@@ -24,7 +24,7 @@ FNSSettingOption UNSGameSettings::GetCurrentOption() const
     return *Option;
 }
 
-FText UNSGameSettings::GetName() const
+FText UNSGameSettings::GetSettingName() const
 {
     return Name;
 }
