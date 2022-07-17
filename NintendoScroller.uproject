@@ -35,6 +35,14 @@
 		{
 			"Name": "Volumetrics",
 			"Enabled": true
+		},
+		{
+			"Name": "GameplayAbilityExtensions",
+			"Enabled": true
+		},
+		{
+			"Name": "GridMapEditor",
+			"Enabled": true
 		}
 	]
 }

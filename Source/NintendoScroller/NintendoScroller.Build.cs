@@ -9,8 +9,10 @@ public class NintendoScroller : ModuleRules {
     Console.WriteLine(
         $"Unreal version {Target.Version.MajorVersion}.{Target.Version.MinorVersion}.{Target.Version.PatchVersion}");
     PublicDependencyModuleNames.AddRange(
-        new string[] { "Core", "CoreUObject", "Engine", "InputCore", "Json", "JsonUtilities", "GameplayAbilities" });
+        new string[] { "Core", "CoreUObject", "Engine", "InputCore", "Json", "JsonUtilities",  });
 
+    PublicDependencyModuleNames.AddRange(new string[] { "GameplayAbilities", "GameplayTags", "GameplayTasks"});
+    PublicDependencyModuleNames.AddRange(new string[] { "UnrealEd"});
     PrivateDependencyModuleNames.AddRange(new string[] {});
     PublicIncludePaths.Add("NintendoScroller");
     // Uncomment if you are using Slate UI

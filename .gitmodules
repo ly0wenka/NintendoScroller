@@ -1,0 +1,6 @@
+[submodule "Plugins/Developer/GameplayAbilityExtensions"]
+	path = Plugins/Developer/GameplayAbilityExtensions
+	url = https://github.com/ly0wenka/GameplayAbilityExtensions
+[submodule "Plugins/Developer/GridMapEditor"]
+	path = Plugins/Developer/GridMapEditor
+	url = https://github.com/ly0wenka/GridMapEditor
