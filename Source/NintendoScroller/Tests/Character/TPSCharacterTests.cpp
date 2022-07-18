@@ -13,11 +13,8 @@ bool TPSCharacterTests::RunTest(const FString& Parameters)
 }
 #if WITH_AUTOMATION_TESTS
 
-//#include "TPS/Tests/TPSCharacterTests.h"
 #include "CoreMinimal.h"
-#include "Misc/AutomationTest.h"
 #include "Tests/Utils/TestUtils.h"
-#include "Engine/World.h"
 #include "Character/NSCharacter.h"
 #include "Tests/AutomationCommon.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -43,7 +40,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCharacterCanBeKilled, "TPSGame.Character.Chara
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAutoHealShouldRestoreHealth, "TPSGame.Character.AutoHealShouldRestoreHealth",
     EAutomationTestFlags::ApplicationContextMask | EAutomationTestFlags::ProductFilter | EAutomationTestFlags::HighPriority);
 
-// using namespace ::Test;
+using namespace NS::Test;
 
 namespace
 {
@@ -55,7 +52,7 @@ bool FHealthMightBeChangedWithDamage::RunTest(const FString& Parameters)
 {
     LevelScope("/Game/Tests/EmptyTestLevel");
 
-    UWorld* World = WorldHelper::GetWorld()();
+    UWorld* World = WorldHelper::GetWorld();
     if (!TestNotNull("World exists", World)) return false;
 
     const FTransform InitialTransform{FVector{0.0f, -240.0f, 110.0f}};
@@ -196,7 +193,7 @@ bool FAutoHealShouldRestoreHealth::RunTest(const FString& Parameters)
 {
     const auto Level = LevelScope("/Game/SideScrollerBP/Maps/Level_1-1");
 
-    UWorld* World = WorldHelper::GetWorld()();
+    UWorld* World = WorldHelper::GetWorld();
     if (!TestNotNull("World exists", World)) return false;
 
     const FTransform InitialTransform{FVector{0.0f, -240.0f, 110.0f}};

@@ -1,11 +1,10 @@
 ﻿#pragma once
 
-#if WITH_AUTOMATION_TESTS
-
 #include "CoreMinimal.h"
 #include "Engine/Blueprint.h"
+#include "Misc/AutomationTest.h"
 
-namespace TPS
+namespace NS
 {
 namespace Test
 {
@@ -70,5 +69,3 @@ FString GetTestDataDir();
 
 }  // namespace Test
 }  // namespace TPS
-
-#endif

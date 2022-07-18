@@ -1,6 +1,8 @@
 // My game copyright
 
 #include "UI/PauseMenu/PauseMenuWidget.h"
+
+#include "Character/NSPlayerController.h"
 #include "Components/Button.h"
 
 void UPauseMenuWidget::NativeOnInitialized()
@@ -11,7 +13,7 @@ void UPauseMenuWidget::NativeOnInitialized()
     CloseMenuButton->OnClicked.AddDynamic(this, &ThisClass::OnCloseMenu);
 }
 
-void UPauseMenuWidget::OnCloseMenu()
+void UPauseMenuWidget::OnCloseMenu() const
 {
     if (!GetWorld()) return;
 

@@ -24,5 +24,5 @@ protected:
 
 private:
     UFUNCTION()
-    void OnCloseMenu();
+    void OnCloseMenu() const;
 };

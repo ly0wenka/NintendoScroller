@@ -2,9 +2,9 @@
 
 #include "NSCharacter.h"
 
-#if MY_VR_MACRO
-#include "HeadMountedDisplayFunctionLibrary.h"
-#endif
+//#if MY_VR_MACRO
+//#include "HeadMountedDisplayFunctionLibrary.h"
+//#endif
 
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -18,9 +18,13 @@
 //////////////////////////////////////////////////////////////////////////
 // ANSCharacter
 
-UAbilitySystemComponent* ANSCharacter::GetAbilitySystemComponent() const
+// UAbilitySystemComponent* ANSCharacter::GetAbilitySystemComponent() const
+// {
+//     return nullptr;
+// }
+
+void ANSCharacter::SetPlayerIsALive(bool bCond)
 {
-    return nullptr;
 }
 
 ANSCharacter::ANSCharacter()
@@ -71,23 +75,23 @@ void ANSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
     PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
     PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
-    PlayerInputComponent->BindAxis("MoveForward", this, &ANSCharacter::MoveForward);
+    //PlayerInputComponent->BindAxis("MoveForward", this, &ANSCharacter::MoveForward);
     PlayerInputComponent->BindAxis("MoveRight", this, &ANSCharacter::MoveRight);
 
     // We have 2 versions of the rotation bindings to handle different kinds of devices differently
     // "turn" handles devices that provide an absolute delta, such as a mouse.
     // "turnrate" is for devices that we choose to treat as a rate of change, such as an analog joystick
-    PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
-    PlayerInputComponent->BindAxis("TurnRate", this, &ANSCharacter::TurnAtRate);
-    PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
-    PlayerInputComponent->BindAxis("LookUpRate", this, &ANSCharacter::LookUpAtRate);
+    // PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
+    // PlayerInputComponent->BindAxis("TurnRate", this, &ANSCharacter::TurnAtRate);
+    // PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
+    // PlayerInputComponent->BindAxis("LookUpRate", this, &ANSCharacter::LookUpAtRate);
 
     // handle touch devices
     PlayerInputComponent->BindTouch(IE_Pressed, this, &ANSCharacter::TouchStarted);
     PlayerInputComponent->BindTouch(IE_Released, this, &ANSCharacter::TouchStopped);
 
     // VR headset functionality
-    PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ANSCharacter::OnResetVR);
+    // PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ANSCharacter::OnResetVR);
 }
 
 void ANSCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)

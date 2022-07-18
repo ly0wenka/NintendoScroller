@@ -4,13 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "AbilitySystemInterface.h"
+//#include "AbilitySystemInterface.h"
+#include "NintendoScroller.h"
 #include "Components/GameplayAbilitySystem/GASAttributes.h"
 #include "Types/HealthData.h"
 #include "NSCharacter.generated.h"
 
-class UGASComponent;
-class UGASAttributes;
+//class UGASComponent;
+//class UGASAttributes;
 class UNSInventoryComponent;
 class UDamageType;
 class AController;
@@ -19,10 +20,11 @@ class UCameraComponent;
 class UInputComponent;
 
 UCLASS(config = Game)
-class ANSCharacter : public ACharacter, public IAbilitySystemInterface
+class ANSCharacter : public ACharacter//, public IAbilitySystemInterface
 {
 public:
-    virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+    //virtual UAbilitySystemComponent* GetAbilitySystemComponent() const;// override;
+    void SetPlayerIsALive(bool bCond);
 private:
     GENERATED_BODY()
 
@@ -34,13 +36,19 @@ private:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
     UCameraComponent* FollowCamera;
 public:
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly,
-        Category="/S/repos/unreal/NintendoScroller/Source/NintendoScroller/Character/NSCharacter.h")
-    UGASComponent* GASComponent;
-
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly,
-        Category="/S/repos/unreal/NintendoScroller/Source/NintendoScroller/Character/NSCharacter.h")
-    UGASAttributes* GASAttributes;
+    // UPROPERTY(VisibleAnywhere, BlueprintReadOnly,
+    //     Category="haracter")
+    // UGASComponent* GASComponent;
+    //
+    // UPROPERTY(VisibleAnywhere, BlueprintReadOnly,
+    //     Category="haracter")
+    // UGASAttributes* GASAttributes;
+    //
+    // UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="haracter")
+    // TArray<AActor*> ArmorSetItems;
+    //
+    // UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="haracter")
+    // EWeaponType WeaponBeingUsed;
 public:
     ANSCharacter();
 

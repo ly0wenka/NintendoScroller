@@ -2,10 +2,6 @@
 
 #include "NSPlayerController.h"
 
-#if MY_VR_MACRO
-#include "HeadMountedDisplayFunctionLibrary.h"
-#endif
-
 #include "NSCharacter.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -67,36 +63,11 @@ void ANSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
     PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
     PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
-    PlayerInputComponent->BindAxis("MoveForward", this, &ANSCharacter::MoveForward);
     PlayerInputComponent->BindAxis("MoveRight", this, &ANSCharacter::MoveRight);
-
-    // We have 2 versions of the rotation bindings to handle different kinds of devices differently
-    // "turn" handles devices that provide an absolute delta, such as a mouse.
-    // "turnrate" is for devices that we choose to treat as a rate of change, such as an analog joystick
-    PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
-    PlayerInputComponent->BindAxis("TurnRate", this, &ANSCharacter::TurnAtRate);
-    PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
-    PlayerInputComponent->BindAxis("LookUpRate", this, &ANSCharacter::LookUpAtRate);
 
     // handle touch devices
     PlayerInputComponent->BindTouch(IE_Pressed, this, &ANSCharacter::TouchStarted);
     PlayerInputComponent->BindTouch(IE_Released, this, &ANSCharacter::TouchStopped);
-
-    // VR headset functionality
-    PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ANSCharacter::OnResetVR);
-}
-
-void ANSCharacter::OnResetVR()
-{
-// If TPS is added to a project via 'Add Feature' in the Unreal Editor the dependency on HeadMountedDisplay in TPS.Build.cs is not
-// automatically propagated and a linker error will result. You will need to either:
-//		Add "HeadMountedDisplay" to [YourProject].Build.cs PublicDependencyModuleNames in order to build successfully (appropriate if
-// supporting VR).
-// or:
-//		Comment or delete the call to ResetOrientationAndPosition below (appropriate if not supporting VR)
-#if MY_VR_MACRO
-    UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition();
-#endif
 }
 
 void ANSCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
@@ -212,37 +183,4 @@ void ANSCharacter::OnDeath()
     }
 
     SetLifeSpan(HealthData.LifeSpan);
-}
-
-void ANSCharacter::TestClangFormat(AActor* Actor)
-{
-    for (int32 i = 0; i < 10; ++i)
-    {
-    }
-
-    int32 value = 2;  // trail comment
-
-    if (true)
-    {
-    }
-
-    switch (value)
-    {
-        case 1: value++; break;
-        case 2:
-        {
-        }
-        break;
-
-        default: break;
-    }
-
-    const TArray<int32> A = {10, 20, 30, 40};
-    const int32 Sum1 = A[0] + A[1] + A[2] + A[3];
-
-    // clang-format off
-    const int32 Sum2 = A[0] + A[1] +
-                       A[2] + A[3];
-    AActor    *pointer{  nullptr};
-    // clang-format on
 }
