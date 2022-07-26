@@ -1,4 +1,5 @@
 ﻿#include "WorldHelper.h"
+using namespace NS::Test;
 
 bool WorldHelper::IsWorldPlayInEditorOrGame(const FWorldContext& Context)
 {

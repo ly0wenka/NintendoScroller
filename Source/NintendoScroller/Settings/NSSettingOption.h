@@ -11,6 +11,5 @@ struct FNSSettingOption
     GENERATED_BODY()
 
     FText Name;
-
     int32 Value;
 };

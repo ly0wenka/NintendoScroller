@@ -1,6 +1,6 @@
 #include "NSGameSettings.h"
 
-DEFINE_LOG_CATEGORY_STATIC(LogTPSGameSetting, All, All);
+DEFINE_LOG_CATEGORY_STATIC(LogNSGameSetting, All, All);
 
 void UNSGameSettings::SetName(const FText& InName)
 {
@@ -18,7 +18,7 @@ FNSSettingOption UNSGameSettings::GetCurrentOption() const
     const auto Option = Options.FindByPredicate([&](const auto& Opt) { return CurrentValue == Opt.Value; });
     if (!Option)
     {
-        UE_LOG(LogTPSGameSetting, Error, TEXT("Option doesn't exist"));
+        UE_LOG(LogNSGameSetting, Error, TEXT("Option doesn't exist"));
         return FNSSettingOption{};
     }
     return *Option;
@@ -61,7 +61,7 @@ int32 UNSGameSettings::GetCurrentValue() const
 {
     if (!Getter)
     {
-        UE_LOG(LogTPSGameSetting, Error, TEXT("Getter func is not set for %s"), *Name.ToString());
+        UE_LOG(LogNSGameSetting, Error, TEXT("Getter func is not set for %s"), *Name.ToString());
         return INDEX_NONE;
     }
     return Getter();
@@ -71,7 +71,7 @@ void UNSGameSettings::SetCurrentValue(int32 Value) const
 {
     if (!Setter)
     {
-        UE_LOG(LogTPSGameSetting, Error, TEXT("Setter func is not set for %s"), *Name.ToString());
+        UE_LOG(LogNSGameSetting, Error, TEXT("Setter func is not set for %s"), *Name.ToString());
         return;
     }
     Setter(Value);

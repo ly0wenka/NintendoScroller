@@ -37,7 +37,15 @@
 			"Enabled": true
 		},
 		{
+			"Name": "GameplayAbilities",
+			"Enabled": true
+		},
+		{
 			"Name": "GameplayAbilityExtensions",
+			"Enabled": true
+		},
+		{
+			"Name": "JsonBlueprintUtilities",
 			"Enabled": true
 		},
 		{

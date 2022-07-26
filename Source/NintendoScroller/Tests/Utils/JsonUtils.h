@@ -5,7 +5,8 @@
 #include "Tests/Utils/InputRecordingUtils.h"
 #include "CoreMinimal.h"
 
-
+namespace NS
+{
 namespace Test
 {
 	class JsonUtils
@@ -15,3 +16,4 @@ namespace Test
 		static bool ReadInputData(const FString& FileName, FInputData& InputData);
 	};
 }  // namespace Test
+}

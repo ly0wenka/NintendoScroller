@@ -8,9 +8,6 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnGamePauseDelegate, bool, IsPaused);
 
-/**
- *
- */
 UCLASS()
 class ANSPlayerController : public APlayerController
 {
@@ -18,9 +15,7 @@ class ANSPlayerController : public APlayerController
 
 public:
     void ToggleGamePause();
-
-    UPROPERTY(BlueprintAssignable)
-    FOnGamePauseDelegate OnGamePause;
+    UPROPERTY(BlueprintAssignable) FOnGamePauseDelegate OnGamePause;
 
 protected:
     virtual void SetupInputComponent() override;

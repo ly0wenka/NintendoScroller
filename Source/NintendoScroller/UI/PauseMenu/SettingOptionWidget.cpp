@@ -30,7 +30,7 @@ void USettingOptionWidget::UpdateTexts()
 {
     if (Setting.IsValid())
     {
-        SettingDisplayName->SetText(Setting->GetName());
+        SettingDisplayName->SetText(FText::FromString(Setting->GetName()));
         SettingCurrentValue->SetText(Setting->GetCurrentOption().Name);
     }
 }

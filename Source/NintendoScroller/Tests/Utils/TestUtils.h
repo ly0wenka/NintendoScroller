@@ -3,10 +3,9 @@
 #include "CoreMinimal.h"
 #include "Engine/Blueprint.h"
 #include "Misc/AutomationTest.h"
+#include "Misc/OutputDeviceNull.h"
 
-namespace NS
-{
-namespace Test
+namespace NS::Test
 {
 template <typename Type1, typename Type2>
 struct TestPayload
@@ -48,7 +47,19 @@ T* CreateBlueprintDeferred(UWorld* World, const FString& Name, const FTransform&
 
 UWorld* GetTestGameWorld();
 
-void CallFuncByNameWithParams(UObject* Object, const FString& FuncName, const TArray<FString>& Params);
+inline void CallFuncByNameWithParams(UObject* Object, const FString& FuncName, const TArray<FString>& Params)
+{
+    if (!Object) return;
+
+    // Command pattern: "FunctionName Param1 Param2 Param3"
+    FString Command = FuncName;
+    for (const auto Param : Params)
+    {
+        Command.Append(" ").Append(Param);
+    }
+    FOutputDeviceNull OutputDeviceNull;
+    Object->CallFunctionByNameWithArguments(*Command, OutputDeviceNull, nullptr, true);
+}
 
 class FTPSUntilLatentCommand : public IAutomationLatentCommand
 {
@@ -66,6 +77,5 @@ int32 GetActionBindingIndexByName(UInputComponent* InputComp, const FString& Act
 int32 GetAxisBindingIndexByName(UInputComponent* InputComp, const FString& AxisName);
 
 FString GetTestDataDir();
-
-}  // namespace Test
-}  // namespace TPS
+  
+}

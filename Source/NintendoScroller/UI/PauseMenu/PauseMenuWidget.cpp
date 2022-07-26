@@ -13,7 +13,7 @@ void UPauseMenuWidget::NativeOnInitialized()
     CloseMenuButton->OnClicked.AddDynamic(this, &ThisClass::OnCloseMenu);
 }
 
-void UPauseMenuWidget::OnCloseMenu() const
+void UPauseMenuWidget::OnCloseMenu()
 {
     if (!GetWorld()) return;
 

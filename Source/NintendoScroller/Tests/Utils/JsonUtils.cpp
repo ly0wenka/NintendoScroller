@@ -9,7 +9,7 @@
 
 DEFINE_LOG_CATEGORY_STATIC(LogJsonUtils, All, All);
 
-using namespace ::Test;
+using namespace NS::Test;
 
 bool JsonUtils::WriteInputData(const FString& FileName, const FInputData& InputData)
 {

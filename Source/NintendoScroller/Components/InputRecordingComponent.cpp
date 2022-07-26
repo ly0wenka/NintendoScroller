@@ -7,8 +7,7 @@
 #include "Tests/Utils/JsonUtils.h"
 #include "GameFramework/PlayerInput.h"
 
-using namespace ::Test;
-
+using namespace NS::Test;
 UInputRecordingComponent::UInputRecordingComponent()
 {
     PrimaryComponentTick.bCanEverTick = true;

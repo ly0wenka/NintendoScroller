@@ -3,17 +3,17 @@
 #include "BatteryTests.h"
 
 #include "Misc/AutomationTest.h"
-#include "TPS/Battery.h"
+#include "NS/Battery.h"
 
-using namespace TPS;
+using namespace NS;
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FBatteryBatterDefaultTest,
-                                 "TPSGame.Items.Battery.BatteryDefault",
+                                 "NSGame.Items.Battery.BatteryDefault",
                                  EAutomationTestFlags::ApplicationContextMask |
                                      EAutomationTestFlags::ProductFilter |
                                      EAutomationTestFlags::HighPriority)
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FBatteryTests, "TPSGame.Items.Battery.Tests",
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FBatteryTests, "NSGame.Items.Battery.Tests",
                                  EAutomationTestFlags::ApplicationContextMask |
                                      EAutomationTestFlags::ProductFilter |
                                      EAutomationTestFlags::HighPriority)

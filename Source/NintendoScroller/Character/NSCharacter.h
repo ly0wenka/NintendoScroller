@@ -1,10 +1,9 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-//#include "AbilitySystemInterface.h"
+#include "AbilitySystemInterface.h"
+#include <GameplayEffectTypes.h>
 #include "NintendoScroller.h"
 #include "Components/GameplayAbilitySystem/GASAttributes.h"
 #include "Types/HealthData.h"
@@ -50,6 +49,7 @@ public:
     // UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="haracter")
     // EWeaponType WeaponBeingUsed;
 public:
+
     ANSCharacter();
 
     /** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
@@ -65,7 +65,7 @@ protected:
     void OnResetVR();
 
     /** Called for forwards/backward input */
-    void MoveForward(float Value);
+    virtual void MoveForward(float Value);
 
     /** Called for side to side input */
     void MoveRight(float Value);
@@ -80,7 +80,7 @@ protected:
      * Called via input to turn look up/down at a given rate.
      * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
      */
-    void LookUpAtRate(float Rate);
+    virtual void LookUpAtRate(float Rate);
 
     /** Handler for when a touch input begins. */
     void TouchStarted(ETouchIndex::Type FingerIndex, FVector Location);
@@ -89,6 +89,7 @@ protected:
     void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
 
 protected:
+
     // APawn interface
     virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
     // End of APawn interface
@@ -115,12 +116,8 @@ private:
     float Health{0.0f};
     FTimerHandle HealTimerHandle;
 
-    UFUNCTION()
-    void OnAnyDamageReceived(
-        AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser);
+    UFUNCTION() void OnAnyDamageReceived(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser);
 
     void OnHealing();
     void OnDeath();
-
-    void TestClangFormat(AActor* Actor);
 };
