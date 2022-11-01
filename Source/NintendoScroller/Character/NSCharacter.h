@@ -19,10 +19,10 @@ class UCameraComponent;
 class UInputComponent;
 
 UCLASS(config = Game)
-class ANSCharacter : public ACharacter//, public IAbilitySystemInterface
+class ANSCharacter : public ACharacter, public IAbilitySystemInterface
 {
 public:
-    //virtual UAbilitySystemComponent* GetAbilitySystemComponent() const;// override;
+    virtual UAbilitySystemComponent* GetAbilitySystemComponent() const;// override;
     void SetPlayerIsALive(bool bCond);
 private:
     GENERATED_BODY()

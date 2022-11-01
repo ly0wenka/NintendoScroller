@@ -18,10 +18,10 @@
 //////////////////////////////////////////////////////////////////////////
 // ANSCharacter
 
-// UAbilitySystemComponent* ANSCharacter::GetAbilitySystemComponent() const
-// {
-//     return nullptr;
-// }
+UAbilitySystemComponent* ANSCharacter::GetAbilitySystemComponent() const
+{
+    return nullptr;
+}
 
 void ANSCharacter::SetPlayerIsALive(bool bCond)
 {
