@@ -1,0 +1,1 @@
+git rm -r -f Plugins

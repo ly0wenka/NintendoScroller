@@ -5,7 +5,8 @@ using UnrealBuildTool;
 
 public class NintendoScroller : ModuleRules {
   public NintendoScroller(ReadOnlyTargetRules Target) : base(Target) {
-    PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
     Console.WriteLine(
         $"Unreal version {Target.Version.MajorVersion}.{Target.Version.MinorVersion}.{Target.Version.PatchVersion}");
     PublicDependencyModuleNames.AddRange(

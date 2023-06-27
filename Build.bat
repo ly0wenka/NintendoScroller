@@ -1,4 +1,4 @@
-"C:\Program Files\Epic Games\UE_5.0\Engine\Build\BatchFiles\RunUAT.bat" ^
+"L:\Program Files\Epic Games\UE_5.1\Engine\Build\BatchFiles\RunUAT.bat" ^
 BuildCookRun ^
 -project="S:\repos\unreal\NintendoScroller\NintendoScroller.uproject" ^
 -platform=Win64 -clientconfig=Development ^

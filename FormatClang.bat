@@ -1,0 +1,1 @@
+for /r Source %i in (*.cpp, *.h, *.cs) do clang-format -style=Microsoft -i %i
