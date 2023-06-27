@@ -13,7 +13,7 @@ public class NintendoScroller : ModuleRules {
         new string[] { "Core", "CoreUObject", "Engine", "InputCore", "Json", "JsonUtilities", "UMG" });
 
     PublicDependencyModuleNames.AddRange(new string[] { "GameplayAbilities", "GameplayTags", "GameplayTasks"});
-    PublicDependencyModuleNames.AddRange(new string[] { "UnrealEd"});
+    PublicDependencyModuleNames.AddRange(new string[] { "UnrealEd", "LDAssistant", "Paper2D" });
     // PrivateDependencyModuleNames.AddRange(new string[] {"GameplayAbilities", "GameplayTags", "GameplayTasks"});
     PublicIncludePaths.Add("NintendoScroller");
     // Uncomment if you are using Slate UI
