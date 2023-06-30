@@ -4,6 +4,9 @@
 #include "APPlayer.h"
 #include "PaperFlipbookComponent.h"
 #include "PaperFlipbook.h"
+#include "EnhancedInputSubsystems.h"
+#include "GameFramework/PlayerController.h"
+#include "Engine/LocalPlayer.h"
 
 AAPPlayer::AAPPlayer() 
 {
@@ -22,7 +25,27 @@ AAPPlayer::AAPPlayer()
     Camera->SetupAttachment(SpringArm);
 }
 
+void AAPPlayer::BeginPlay() 
+{
+    // Make sure that we have a valid PlayerController.
+    if (APlayerController* PC = Cast<APlayerController>(GetController()))
+    {
+        // Get the Enhanced Input Local Player Subsystem from the Local Player related to our Player Controller.
+        if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
+                ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PC->GetLocalPlayer()))
+        {
+            // PawnClientRestart can run more than once in an Actor's lifetime, so start by clearing out any leftover mappings.
+            Subsystem->ClearAllMappings();
+
+            // Add each mapping context, along with their priority values. Higher values outprioritize lower values.
+            Subsystem->AddMappingContext(MyInputMappingContext, MyInt32Priority);
+        }
+    }
+}
+
 void AAPPlayer::PostInitializeComponents()
 {
     Super::PostInitializeComponents();
+
+
 }

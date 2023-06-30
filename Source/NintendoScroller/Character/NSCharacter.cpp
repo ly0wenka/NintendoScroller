@@ -27,7 +27,7 @@ void ANSCharacter::SetPlayerIsALive(bool bCond)
 {
 }
 
-ANSCharacter::ANSCharacter()
+ANSCharacter::ANSCharacter() : PowerUp_ScaleCPP(FVector(1., 1., 1.))
 {
     // Set size for collision capsule
     GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
@@ -158,6 +158,14 @@ void ANSCharacter::BeginPlay()
 float ANSCharacter::GetHealthPercent() const
 {
     return Health / HealthData.MaxHealth;
+}
+
+void ANSCharacter::Death_playerCPP() {
+
+}
+
+void ANSCharacter::PowerUpCPP() {
+
 }
 
 void ANSCharacter::OnAnyDamageReceived(

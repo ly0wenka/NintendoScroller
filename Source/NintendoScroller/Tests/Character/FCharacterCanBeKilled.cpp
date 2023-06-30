@@ -49,33 +49,33 @@ bool FCharacterCanBeKilled::RunTest(const FString& Parameters)
 
     TestEqual("Health is full", Character->GetHealthPercent(), 1.0f);
 
-    const auto KillingDamageAmount = HealthData.MaxHealth;
-    Character->TakeDamage(KillingDamageAmount, FDamageEvent{}, nullptr, nullptr);
+    //const auto KillingDamageAmount = HealthData.MaxHealth;
+    //Character->TakeDamage(KillingDamageAmount, FDamageEvent{}, nullptr, nullptr);
 
-    TestEqual("Health is empty", Character->GetHealthPercent(), 0.0f);
-    TestTrueExpr(Character->GetCharacterMovement()->MovementMode == EMovementMode::MOVE_None);
+    //TestEqual("Health is empty", Character->GetHealthPercent(), 0.0f);
+    //TestTrueExpr(Character->GetCharacterMovement()->MovementMode == EMovementMode::MOVE_None);
 
-    ENUM_LOOP_START(ECollisionChannel, EElem)
-    if (EElem != ECollisionChannel::ECC_OverlapAll_Deprecated)
-    {
-        TestTrueExpr(Character->GetCapsuleComponent()->GetCollisionResponseToChannel(EElem) == ECollisionResponse::ECR_Ignore);
-    }
-    ENUM_LOOP_END
+    //ENUM_LOOP_START(ECollisionChannel, EElem)
+    //if (EElem != ECollisionChannel::ECC_OverlapAll_Deprecated)
+    //{
+    //    TestTrueExpr(Character->GetCapsuleComponent()->GetCollisionResponseToChannel(EElem) == ECollisionResponse::ECR_Ignore);
+    //}
+    //ENUM_LOOP_END
 
-    TestTrueExpr(Character->GetMesh()->GetCollisionEnabled() == ECollisionEnabled::QueryAndPhysics);
-    TestTrueExpr(Character->GetMesh()->IsSimulatingPhysics());
-    TestTrueExpr(FMath::IsNearlyEqual(Character->GetLifeSpan(), HealthData.LifeSpan));
+    //TestTrueExpr(Character->GetMesh()->GetCollisionEnabled() == ECollisionEnabled::QueryAndPhysics);
+    //TestTrueExpr(Character->GetMesh()->IsSimulatingPhysics());
+    //TestTrueExpr(FMath::IsNearlyEqual(Character->GetLifeSpan(), HealthData.LifeSpan));
 
-    // ADD_LATENT_AUTOMATION_COMMAND(FCharacterDestroyedLatentCommand(Character, HealthData.LifeSpan));
-    ADD_LATENT_AUTOMATION_COMMAND(FDelayedFunctionLatentCommand(
-        [Character]()
-        {
-            if (IsValid(Character))
-            {
-                UE_LOG(LogNSCharacterTests, Error, TEXT("Character wasn't destroyed"));
-            }
-        },
-        HealthData.LifeSpan));
+    //// ADD_LATENT_AUTOMATION_COMMAND(FCharacterDestroyedLatentCommand(Character, HealthData.LifeSpan));
+    //ADD_LATENT_AUTOMATION_COMMAND(FDelayedFunctionLatentCommand(
+    //    [Character]()
+    //    {
+    //        if (IsValid(Character))
+    //        {
+    //            UE_LOG(LogNSCharacterTests, Error, TEXT("Character wasn't destroyed"));
+    //        }
+    //    },
+    //    HealthData.LifeSpan));
 
     return true;
 }

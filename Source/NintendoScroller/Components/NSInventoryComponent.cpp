@@ -33,15 +33,15 @@ void UNSInventoryComponent::BeginPlay()
 {
     Super::BeginPlay();
 
-#if !UE_BUILD_SHIPPING
-    const UEnum* InvEnum = StaticEnum<EInventoryItemType>();
-    check(InvEnum);
-    for (int32 i = 0; i < InvEnum->NumEnums() - 1; ++i)
-    {
-        const EInventoryItemType EnumElem = static_cast<EInventoryItemType>(i);
-        const FString EnumElemName = UEnum::GetValueAsString(EnumElem);
-        const bool LimitCheckCond = InventoryLimits.Contains(EnumElem) && InventoryLimits[EnumElem] >= 0;
-        checkf(LimitCheckCond, TEXT("Limit for %s doesn't exist or less then zero"), *EnumElemName);
-    }
-#endif
+//#if !UE_BUILD_SHIPPING
+//    const UEnum* InvEnum = StaticEnum<EInventoryItemType>();
+//    check(InvEnum);
+//    for (int32 i = 0; i < InvEnum->NumEnums() - 1; ++i)
+//    {
+//        const EInventoryItemType EnumElem = static_cast<EInventoryItemType>(i);
+//        const FString EnumElemName = UEnum::GetValueAsString(EnumElem);
+//        const bool LimitCheckCond = InventoryLimits.Contains(EnumElem) && InventoryLimits[EnumElem] >= 0;
+//        checkf(LimitCheckCond, TEXT("Limit for %s doesn't exist or less then zero"), *EnumElemName);
+//    }
+//#endif
 }

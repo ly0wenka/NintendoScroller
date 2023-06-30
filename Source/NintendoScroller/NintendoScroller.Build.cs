@@ -14,6 +14,7 @@ public class NintendoScroller : ModuleRules {
 
     PublicDependencyModuleNames.AddRange(new string[] { "GameplayAbilities", "GameplayTags", "GameplayTasks"});
     PublicDependencyModuleNames.AddRange(new string[] { "UnrealEd", "LDAssistant", "Paper2D" });
+    PublicDependencyModuleNames.AddRange(new string[] { "EnhancedInput" });
     // PrivateDependencyModuleNames.AddRange(new string[] {"GameplayAbilities", "GameplayTags", "GameplayTasks"});
     PublicIncludePaths.Add("NintendoScroller");
     // Uncomment if you are using Slate UI

@@ -7,6 +7,10 @@
 #include "NintendoScroller.h"
 #include "Components/GameplayAbilitySystem/GASAttributes.h"
 #include "Types/HealthData.h"
+#include "Components/ArrowComponent.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "Math/Vector.h"
 #include "NSCharacter.generated.h"
 
 //class UGASComponent;
@@ -102,6 +106,56 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = "Health" /*, meta = (BlueprintProtected = "true")*/)
     float GetHealthPercent() const;
+
+public:
+	/** Please add a function description */
+	UFUNCTION(BlueprintCallable)
+    void Death_playerCPP();
+
+	/** Please add a function description */
+	UFUNCTION(BlueprintCallable)
+    void PowerUpCPP();
+
+public:
+	/** Please add a variable description */
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category="Default")
+	TObjectPtr<UArrowComponent> Shot_GCPP;
+
+	/** Please add a variable description */
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category="MyCharacter")
+    TObjectPtr<UCameraComponent> SideViewCameraCPP;
+
+	/** Please add a variable description */
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category="Default")
+    TObjectPtr<USpringArmComponent> SpringArm1CPP;
+
+	/** Please add a variable description */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="Default|Stats", meta=(DisplayName="Player  Acceleration"))
+    double PlayerAccelerationCPP;
+
+	/** Please add a variable description */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="Default|Stats", meta=(MultiLine="true"))
+    int32 Coins_amountCPP;
+
+	/** Please add a variable description */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="Default|Stats", meta=(MultiLine="true"))
+	bool Can_shootCPP;
+
+	/** Please add a variable description */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="Default|Stats", meta=(MultiLine="true"))
+	int32 Points_amountCPP;
+
+	/** Please add a variable description */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="Default|Params", meta=(MultiLine="true"))
+	bool Is_deadCPP;
+
+	/** Scale vector for mesh character */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="Default|Params", meta=(MultiLine="true"))
+	FVector Default_ScaleCPP;
+
+	/** Please add a variable description */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="Default|Params", meta=(MultiLine="true"))
+	FVector PowerUp_ScaleCPP;
 
 protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)

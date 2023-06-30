@@ -7,6 +7,7 @@
 #include "UObject/ObjectPtr.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "InputMappingContext.h"
 #include "APPlayer.generated.h"
 
 /**
@@ -20,6 +21,7 @@ class NINTENDOSCROLLER_API AAPPlayer : public APaperZDCharacter
 public:
     AAPPlayer();
 
+	virtual void BeginPlay() override;
 	virtual void PostInitializeComponents() override;
 	/** Please add a variable description */
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category="Default")
@@ -28,4 +30,7 @@ public:
 	/** Please add a variable description */
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category="Default")
 	TObjectPtr<USpringArmComponent> SpringArm;
+
+	UInputMappingContext* MyInputMappingContext;
+    int32 MyInt32Priority;
 };
